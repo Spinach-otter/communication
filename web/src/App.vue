@@ -1,23 +1,18 @@
 <template>
-  <NavBar />
   <router-view />
 </template>
 
 <script>
-import NavBar from "@/components/NavBar.vue";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 
-export default {
-  components: {
-    NavBar,
-  },
-};
+export default {};
 </script>
 
 
-<style scoped>
+<style>
 body {
-  background-image: url("@/assets/images/bg.jpg");
+  background-image: url("@/assets/images/background.png");
+  background-size: cover;
 }
 </style>

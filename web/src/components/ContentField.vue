@@ -13,7 +13,9 @@ export default {};
 </script>
 
 <style scope>
-.content-field {
-  margin-top: 20px;
+.card {
+  width: 100%;
+  height: 90vh;
+  margin: 10px 0;
 }
 </style>
