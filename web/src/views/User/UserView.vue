@@ -4,16 +4,32 @@
       <NavBar />
     </div>
     <div class="right-component">
-      <ContentField>user</ContentField>
+      <ContentField>{{ msg }}</ContentField>
     </div>
   </div>
 </template>
 
 <script>
+import $ from "jquery";
+import { ref } from "vue";
 import NavBar from "@/components/NavBar.vue";
 import ContentField from "@/components/ContentField.vue";
 
 export default {
+  setup: () => {
+    let msg = ref("");
+    $.ajax({
+      url: "http://localhost:8080/user/all/",
+      type: "get",
+      success: (resp) => {
+        console.log(resp);
+        msg.value = resp;
+      },
+    });
+    return {
+      msg,
+    };
+  },
   components: {
     NavBar,
     ContentField,
