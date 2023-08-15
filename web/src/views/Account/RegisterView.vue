@@ -3,17 +3,77 @@
     <div class="box">
       <p class="table">Register</p>
       <br />
-      <input type="text" placeholder="账号" />
-      <input type="password" placeholder="密码" />
-      <br />
-      <a href="/" class="go">GO</a>
+      <div class="input-container">
+        <input
+          v-model="username"
+          id="username"
+          type="text"
+          placeholder="账号"
+        />
+        <input
+          v-model="password"
+          id="password"
+          type="password"
+          placeholder="密码"
+        />
+        <input
+          v-model="confirmedPassword"
+          id="confirmedPassword"
+          type="password"
+          placeholder="确认密码"
+        />
+      </div>
+      <div class="error-message">{{ error_message }}</div>
+      <button type="submit" class="reset-button go" @click="register">
+        Register
+      </button>
+      <!-- <a href="/" class="go">GO</a> -->
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { ref } from "vue";
+import router from "@/router/index";
+import $ from "jquery";
+
+export default {
+  setup() {
+    let username = ref("");
+    let password = ref("");
+    let confirmedPassword = ref("");
+    let error_message = ref("");
+
+    const register = () => {
+      $.ajax({
+        url: "http://localhost:8080/user/account/register/",
+        type: "post",
+        data: {
+          username: username.value,
+          password: password.value,
+          confirmedPassword: confirmedPassword.value,
+        },
+        success(resp) {
+          if (resp.error_message === "success") {
+            router.push({ name: "login" });
+          } else {
+            error_message.value = resp.error_message;
+          }
+        },
+      });
+    };
+
+    return {
+      username,
+      password,
+      confirmedPassword,
+      error_message,
+      register,
+    };
+  },
+};
 </script>
+
 
 <style scoped>
 body {
@@ -21,7 +81,7 @@ body {
 }
 .register {
   width: 550px;
-  height: 400px;
+  height: 450px;
   display: flex;
   border-radius: 15px;
   justify-content: center;
@@ -49,7 +109,7 @@ body {
 }
 
 ::v-deep .box input {
-  width: 100%;
+  width: 400px;
   margin-bottom: 20px;
   outline: none;
   border: 0;
@@ -58,7 +118,21 @@ body {
   background-color: transparent;
   font: 900 16px "";
 }
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+::v-deep .reset-button {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  /* 还可以添加其他重置样式 */
+}
 ::v-deep .go {
+  width: 400px;
   height: auto; /* 将固定高度改为自动高度 */
   padding: 8px 12px; /* 调整内边距 */
   text-align: center;
@@ -70,5 +144,9 @@ body {
   letter-spacing: 3px;
   background-image: linear-gradient(to left, #fd79a8, #a29bfe);
   text-decoration: none;
+}
+
+::v-deep .error-message {
+  color: red;
 }
 </style>

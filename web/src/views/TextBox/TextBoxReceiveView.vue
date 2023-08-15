@@ -4,7 +4,7 @@
       <NavBar />
     </div>
     <div class="right-component">
-      <ContentField>textbox</ContentField>
+      <ContentField>Receive textbox</ContentField>
     </div>
   </div>
 </template>

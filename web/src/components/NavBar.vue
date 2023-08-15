@@ -1,3 +1,5 @@
+
+
 <template>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
     <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -119,45 +121,37 @@
       </a>
       <ul class="list-unstyled ps-0">
         <li class="mb-1">
-          <button
-            class="btn btn-toggle align-items-center rounded collapsed"
-            data-bs-toggle="collapse"
-            data-bs-target="#home-collapse"
-            aria-expanded="true"
-          >
+          <router-link :to="{ name: 'home' }" class="btn btn-toggle rounded">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#home" />
             </svg>
             Home
-          </button>
-          <div class="collapse show" id="home-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="/class/" class="link-dark rounded">Overview</a></li>
-              <li><a href="/" class="link-dark rounded">Updates</a></li>
-              <li><a href="/login/" class="link-dark rounded">Reports</a></li>
-            </ul>
-          </div>
+          </router-link>
         </li>
         <li class="mb-1">
-          <button
-            class="btn btn-toggle align-items-center rounded collapsed"
-            data-bs-toggle="collapse"
-            data-bs-target="#dashboard-collapse"
-            aria-expanded="false"
+          <router-link
+            :to="{ name: 'class_index' }"
+            class="btn btn-toggle rounded"
           >
-            <svg class="bi me-2" width="16" height="16">
-              <use xlink:href="#speedometer2" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi me-2 bi-people-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"
+              />
+              <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
             </svg>
-            Dashboard
-          </button>
-          <div class="collapse" id="dashboard-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="#" class="link-dark rounded">Overview</a></li>
-              <li><a href="#" class="link-dark rounded">Weekly</a></li>
-              <li><a href="#" class="link-dark rounded">Monthly</a></li>
-              <li><a href="#" class="link-dark rounded">Annually</a></li>
-            </ul>
-          </div>
+            Class
+          </router-link>
         </li>
         <li class="mb-1">
           <button
@@ -167,16 +161,26 @@
             aria-expanded="false"
           >
             <svg class="bi me-2" width="16" height="16">
-              <use xlink:href="#table" />
+              <use xlink:href="#chat-quote-fill" />
             </svg>
-            Orders
+            TextBox
           </button>
           <div class="collapse" id="orders-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="#" class="link-dark rounded">New</a></li>
-              <li><a href="#" class="link-dark rounded">Processed</a></li>
-              <li><a href="#" class="link-dark rounded">Shipped</a></li>
-              <li><a href="#" class="link-dark rounded">Returned</a></li>
+              <li>
+                <router-link
+                  :to="{ name: 'text_send' }"
+                  class="link-dark rounded"
+                  >Send</router-link
+                >
+              </li>
+              <li>
+                <router-link
+                  :to="{ name: 'text_receive' }"
+                  class="link-dark rounded"
+                  >Receive</router-link
+                >
+              </li>
             </ul>
           </div>
         </li>
@@ -195,10 +199,18 @@
           </button>
           <div class="collapse" id="account-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li><a href="#" class="link-dark rounded">New...</a></li>
-              <li><a href="#" class="link-dark rounded">Profile</a></li>
-              <li><a href="#" class="link-dark rounded">Settings</a></li>
-              <li><a href="#" class="link-dark rounded">Sign out</a></li>
+              <li>
+                <router-link
+                  :to="{ name: 'settings' }"
+                  class="link-dark rounded"
+                  >Settings</router-link
+                >
+              </li>
+              <li>
+                <a @click="logout" href="/login/" class="link-dark rounded"
+                  >Logout</a
+                >
+              </li>
             </ul>
           </div>
         </li>
@@ -218,6 +230,24 @@
     new bootstrap.Tooltip(tooltipTriggerEl);
   });
 })();
+import { useStore } from "vuex";
+import { useRoute } from "vue-router";
+import { computed } from "vue";
+export default {
+  setup() {
+    const store = useStore();
+    const route = useRoute();
+    let route_name = computed(() => route.name);
+
+    const logout = () => {
+      store.dispatch("logout");
+    };
+    return {
+      route_name,
+      logout,
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -264,13 +294,6 @@ main {
 .btn-toggle:focus {
   color: rgba(0, 0, 0);
   background-color: #5666d5;
-}
-.btn-toggle::before {
-  width: 1.25em;
-  line-height: 0;
-  content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
-  transition: transform 0.35s ease;
-  transform-origin: 0.5em 50%;
 }
 .btn-toggle[aria-expanded="true"] {
   color: rgba(0, 0, 0, 0.85);

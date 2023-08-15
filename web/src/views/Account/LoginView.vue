@@ -3,18 +3,74 @@
     <div class="box">
       <p class="table">Login</p>
       <br />
-      <input type="text" placeholder="账号" />
-      <input type="password" placeholder="密码" />
-      <br />
-      <a href="/" class="go">GO</a>
+      <input v-model="username" type="text" id="username" placeholder="账号" />
+      <input
+        v-model="password"
+        type="password"
+        id="password"
+        placeholder="密码"
+      />
+      <div class="error-message">{{ error_message }}</div>
+      <!-- <br /> -->
+      <button type="submit" class="reset-button go" @click="login">GO</button>
       <a href="/register/" class="go">Register</a>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { useStore } from "vuex";
+import { ref } from "vue";
+import router from "@/router/index";
+
+export default {
+  setup() {
+    const store = useStore();
+    let username = ref("");
+    let password = ref("");
+    let error_message = ref("");
+
+    const jwt_token = localStorage.getItem("jwt_token");
+    if (jwt_token) {
+      store.commit("updateToken", jwt_token);
+      store.dispatch("getinfo", {
+        success() {
+          router.push({ name: "home" });
+        },
+        error() {},
+      });
+    } else {
+    }
+
+    const login = () => {
+      error_message.value = "";
+      store.dispatch("login", {
+        username: username.value,
+        password: password.value,
+        success() {
+          store.dispatch("getinfo", {
+            success() {
+              router.push({ name: "home" });
+            },
+          });
+          router.push({ name: "home" });
+        },
+        error() {
+          error_message.value = "用户名或密码错误";
+        },
+      });
+    };
+
+    return {
+      username,
+      password,
+      error_message,
+      login,
+    };
+  },
+};
 </script>
+
 
 <style scoped>
 body {
@@ -22,7 +78,7 @@ body {
 }
 .Login {
   width: 550px;
-  height: 400px;
+  height: 450px;
   display: flex;
   border-radius: 15px;
   justify-content: center;
@@ -59,7 +115,16 @@ body {
   background-color: transparent;
   font: 900 16px "";
 }
+::v-deep .reset-button {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  /* 还可以添加其他重置样式 */
+}
+
 ::v-deep .go {
+  width: 400px;
   height: auto; /* 将固定高度改为自动高度 */
   padding: 8px 12px; /* 调整内边距 */
   text-align: center;
@@ -71,5 +136,9 @@ body {
   letter-spacing: 3px;
   background-image: linear-gradient(to left, #fd79a8, #a29bfe);
   text-decoration: none;
+}
+
+::v-deep .error-message {
+  color: red;
 }
 </style>
