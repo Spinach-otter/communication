@@ -1,5 +1,5 @@
 <template>
-  <ContentField>send</ContentField>
+  <ContentField>myclass</ContentField>
 </template>
 
 <script>

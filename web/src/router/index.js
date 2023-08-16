@@ -8,6 +8,8 @@ import LogIn from '@/views/Account/LoginView.vue'
 import Register from '@/views/Account/RegisterView.vue'
 import Settings from '@/views/User/SettingsView.vue'
 import store from '@/store/index'
+import ClassList from '@/views/Class/ClassListView.vue'
+import MyClass from '@/views/Class/MyClassView.vue'
 
 const routes = [
   {
@@ -16,6 +18,7 @@ const routes = [
     component: LogIn,
     meta: {
       requestAuth: false,
+      hideComponent: true,
     }
   },
   {
@@ -24,6 +27,7 @@ const routes = [
     component: Register,
     meta: {
       requestAuth: false,
+      hideComponent: true,
     }
   },
   {
@@ -32,6 +36,7 @@ const routes = [
     redirect: "/user/",
     meta: {
       requestAuth: true,
+      hideComponent: false,
     }
   },
   {
@@ -40,19 +45,46 @@ const routes = [
     component: UserView,
     meta: {
       requestAuth: true,
+      hideComponent: false,
     }
   },
   {
     path: "/class/",
     name: "class_index",
-    component: ClassView, meta: {
+    component: ClassView,
+    meta: {
       requestAuth: true,
+      hideComponent: false,
     }
   },
+
+  {
+    path: "/class/list/",
+    name: "class_list",
+    component: ClassList,
+    meta: {
+      requestAuth: true,
+      hideComponent: false,
+    }
+  },
+  {
+    path: "/class/mycalss/",
+    name: "my_class",
+    component: MyClass,
+    meta: {
+      requestAuth: true,
+      hideComponent: false,
+    }
+  },
+
   {
     path: "/text/send/",
     name: "text_send",
     component: TextBoxSendView,
+    meta: {
+      requestAuth: true,
+      hideComponent: false,
+    }
   },
   {
     path: "/text/receive/",
@@ -60,6 +92,7 @@ const routes = [
     component: TextBoxReceiveView,
     meta: {
       requestAuth: true,
+      hideComponent: false,
     }
   },
   {
@@ -68,6 +101,7 @@ const routes = [
     component: Settings,
     meta: {
       requestAuth: true,
+      hideComponent: false,
     }
   },
   {
@@ -76,6 +110,7 @@ const routes = [
     component: NotFound,
     meta: {
       requestAuth: false,
+      hideComponent: true,
     }
   },
   {

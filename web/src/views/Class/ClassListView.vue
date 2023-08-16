@@ -1,5 +1,5 @@
 <template>
-  <ContentField>send</ContentField>
+  <ContentField>classlist</ContentField>
 </template>
 
 <script>

@@ -1,10 +1,6 @@
 <template>
-  <div class="container content-field">
-    <div class="card">
-      <div class="card-body">
-        <slot></slot>
-      </div>
-    </div>
+  <div class="right bg-light">
+    <slot></slot>
   </div>
 </template>
 
@@ -12,10 +8,13 @@
 export default {};
 </script>
 
-<style scope>
-.card {
-  width: 100%;
-  height: 90vh;
-  margin: 10px 0;
+<style scoped>
+.right {
+  width: 1130px;
+  height: 688px;
+  float: right;
+  margin-top: 5%;
+  margin-right: 5%;
+  border-radius: 10px;
 }
 </style>

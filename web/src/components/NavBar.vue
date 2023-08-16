@@ -108,37 +108,42 @@
       />
     </symbol>
   </svg>
-  <main>
-    <div class="flex-shrink-0 p-3 bg-light rounded" style="width: 220px">
-      <a
-        href="/"
-        class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom"
+  <div class="left">
+    <div
+      class="flex-shrink-0 p-4 bg-light rounded"
+      style="width: 220px; height: 688px"
+    >
+      <router-link
+        :to="{ name: 'home' }"
+        class="d-flex align-items-center pb-3 mb-4 link-dark text-decoration-none border-bottom"
       >
-        <svg class="bi me-2" width="40" height="32">
+        <svg class="bi me-2" width="58" height="45">
           <use xlink:href="#cpu-fill" />
         </svg>
-        <span class="fs-4">DHUer</span>
-      </a>
+        <span class="fs-2">DHUer</span>
+      </router-link>
       <ul class="list-unstyled ps-0">
-        <li class="mb-1">
+        <li class="mb-2">
           <router-link :to="{ name: 'home' }" class="btn btn-toggle rounded">
-            <svg class="bi me-2" width="16" height="16">
+            <svg class="bi me-2 dis" width="20" height="20">
               <use xlink:href="#home" />
             </svg>
-            Home
+            <div style="font-size: 20px">Home</div>
           </router-link>
         </li>
-        <li class="mb-1">
-          <router-link
-            :to="{ name: 'class_index' }"
-            class="btn btn-toggle rounded"
+        <li class="mb-2">
+          <button
+            class="btn btn-toggle align-items-center rounded collapsed"
+            data-bs-toggle="collapse"
+            data-bs-target="#dashboard-collapse"
+            aria-expanded="false"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
+              width="20"
+              height="20"
               fill="currentColor"
-              class="bi me-2 bi-people-fill"
+              class="bi me-2 bi-people-fill dis"
               viewBox="0 0 16 16"
             >
               <path
@@ -150,23 +155,48 @@
               />
               <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
             </svg>
+            <div style="font-size: 20px">Class</div>
+          </button>
+          <div class="collapse" id="dashboard-collapse">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 lg">
+              <li>
+                <router-link
+                  :to="{ name: 'class_list' }"
+                  class="link-dark rounded"
+                  >ClassList</router-link
+                >
+              </li>
+              <li>
+                <router-link
+                  :to="{ name: 'my_class' }"
+                  class="link-dark rounded"
+                  >MyClass</router-link
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- <router-link
+            :to="{ name: 'class_index' }"
+            class="btn btn-toggle rounded"
+          >
+            
             Class
-          </router-link>
+          </router-link> -->
         </li>
-        <li class="mb-1">
+        <li class="mb-2">
           <button
             class="btn btn-toggle align-items-center rounded collapsed"
             data-bs-toggle="collapse"
             data-bs-target="#orders-collapse"
             aria-expanded="false"
           >
-            <svg class="bi me-2" width="16" height="16">
+            <svg class="bi me-2 dis" width="20" height="20">
               <use xlink:href="#chat-quote-fill" />
             </svg>
-            TextBox
+            <div style="font-size: 20px">TextBox</div>
           </button>
           <div class="collapse" id="orders-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 lg">
               <li>
                 <router-link
                   :to="{ name: 'text_send' }"
@@ -185,20 +215,20 @@
           </div>
         </li>
         <li class="border-top my-3"></li>
-        <li class="mb-1">
+        <li class="mb-2">
           <button
             class="btn btn-toggle align-items-center rounded collapsed"
             data-bs-toggle="collapse"
             data-bs-target="#account-collapse"
             aria-expanded="false"
           >
-            <svg class="bi me-2" width="16" height="16">
+            <svg class="bi me-2 dis" width="20" height="20">
               <use xlink:href="#people-circle" />
             </svg>
-            Account
+            <div style="font-size: 20px">Account</div>
           </button>
           <div class="collapse" id="account-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 lg">
               <li>
                 <router-link
                   :to="{ name: 'settings' }"
@@ -216,7 +246,7 @@
         </li>
       </ul>
     </div>
-  </main>
+  </div>
 </template>
 
  <script>
@@ -251,11 +281,15 @@ export default {
 </script>
 
 <style scoped>
-main {
+.left {
   display: flex;
   flex-wrap: nowrap;
-  margin: 5% 0;
-  height: 90vh;
+  float: left;
+  width: 220px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 5%;
+  height: 693px;
   max-height: 100vh;
   overflow-x: auto;
   overflow-y: hidden;
@@ -274,6 +308,12 @@ main {
   vertical-align: -0.125em;
   pointer-events: none;
   fill: currentColor;
+}
+.dis {
+  margin-left: 10px;
+}
+.lg {
+  font-size: 16px;
 }
 .dropdown-toggle {
   outline: 0;

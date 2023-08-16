@@ -19,6 +19,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
@@ -49,10 +52,10 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         if (user == null) {
             throw new RuntimeException("用户名未登录");
         }
-
-        UserDetailsImpl loginUser = new UserDetailsImpl(user);
+        List<String> list = new ArrayList<>(Arrays.asList("test"));
+        UserDetailsImpl loginUser = new UserDetailsImpl(user,list);
         UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(loginUser, null, null);
+                new UsernamePasswordAuthenticationToken(loginUser, null, loginUser.getAuthorities());
 
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
