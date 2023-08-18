@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.backend.mapper.MessagesMapper">
+    <select id="selectMsgBySendId" resultType="com.example.backend.pojo.Messages">
+        SELECT *
+        FROM Messages
+        WHERE SenderID=#{id};
+    </select>
+    <select id="selectMsgByReceiveId" resultType="com.example.backend.pojo.Messages">
+        SELECT *
+        FROM Messages
+        WHERE RecipientID=#{id};
+    </select>
+</mapper>

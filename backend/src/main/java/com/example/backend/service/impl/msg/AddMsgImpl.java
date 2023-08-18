@@ -46,8 +46,12 @@ public class AddMsgImpl implements AddMsg {
             map.put("error_message","长度不能大于100");
             return map;
         }
+        if(userMapper.selectIdByUserName(username)==null) {
+            map.put("error_message","用户不存在");
+            return map;
+        }
 
-        //3. 创建Bot对象
+        //3. 创建对象
         Date now = new Date();
         Integer receiveid=userMapper.selectIdByUserName(username);
         //System.out.println(receiveid);

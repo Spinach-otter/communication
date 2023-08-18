@@ -1,0 +1,10 @@
+package com.example.backend.service.msg;
+
+import com.example.backend.pojo.Messages;
+import com.example.backend.pojo.msg;
+
+import java.util.List;
+
+public interface GetSendListService {
+    public List<msg> getlist();
+}
