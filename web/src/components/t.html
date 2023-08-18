@@ -1,20 +1,340 @@
-<!DOCTYPE html>
-<html>
+<template>
+    <div class="right">
+        <div class="find">
+            <div class="mix input-group mb-3">
+                <div class="select">
+                    <select class="form-select" id="sel1" name="sellist">
+                        <option>姓名</option>
+                        <option>账号</option>
+                        <option>班级</option>
+                    </select>
+                </div>
+                <input type="text" class="form-control put" placeholder="请查询校友关键词" />
+                <button type="button" class="btn btn-outline-primary send">查询</button>
+            </div>
+        </div>
+        <div class="list">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">校友</th>
+                        <th scope="col">班级</th>
+                        <th scope="col">学号</th>
 
-<head>
-    <title>Bootstrap5 实例</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
-</head>
+                        <th scope="col">性别</th>
+                        <th scope="col">联系</th>
+                        <th scope="col">操作</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>软件2102</td>
+                        <td>21131xxxx</td>
+                        <td>男</td>
+                        <td>123455666</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                <button type="button" class="btn btn-outline-primary">
+                                    留言
+                                </button>
+                                <button type="button" class="btn btn-outline-primary">
+                                    修改
+                                </button>
+                                <button type="button" class="btn btn-outline-primary">
+                                    删除
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>软件2102</td>
+                        <td>21131xxxx</td>
+                        <td>男</td>
+                        <td>123455666</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                <button type="button" class="btn btn-outline-primary">
+                                    留言
+                                </button>
+                                <button type="button" class="btn btn-outline-primary">
+                                    修改
+                                </button>
+                                <button type="button" class="btn btn-outline-primary">
+                                    删除
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Bird</td>
+                        <td>软件2102</td>
+                        <td>21131xxxx</td>
+                        <td>女</td>
+                        <td>123455666</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                <button type="button" class="btn btn-outline-primary">
+                                    留言
+                                </button>
+                                <button type="button" class="btn btn-outline-primary">
+                                    修改
+                                </button>
+                                <button type="button" class="btn btn-outline-primary">
+                                    删除
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Bird</td>
+                        <td>软件2102</td>
+                        <td>21131xxxx</td>
+                        <td>女</td>
+                        <td>123455666</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                <button type="button" class="btn btn-outline-primary">
+                                    留言
+                                </button>
+                                <button type="button" class="btn btn-outline-primary">
+                                    修改
+                                </button>
+                                <button type="button" class="btn btn-outline-primary">
+                                    删除
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>Bird</td>
+                        <td>软件2102</td>
+                        <td>21131xxxx</td>
+                        <td>女</td>
+                        <td>123455666</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                <button type="button" class="btn btn-outline-primary">
+                                    留言
+                                </button>
+                                <button type="button" class="btn btn-outline-primary">
+                                    修改
+                                </button>
+                                <button type="button" class="btn btn-outline-primary">
+                                    删除
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
 
-<body>
-    <div>
-
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>Bird</td>
+                        <td>软件2102</td>
+                        <td>21131xxxx</td>
+                        <td>女</td>
+                        <td>123455666</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                <button type="button" class="btn btn-outline-primary">
+                                    留言
+                                </button>
+                                <button type="button" class="btn btn-outline-primary">
+                                    修改
+                                </button>
+                                <button type="button" class="btn btn-outline-primary">
+                                    删除
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <button type="button" class="btn btn-dark">Dark</button>
+</template>
 
-</body>
+<script>
+    import $ from "jquery";
+    import { useStore } from "vuex";
 
-</html>
+    export default {
+        //test
+        setup() {
+            const store = useStore();
+            // $.ajax({
+            //     url: "http://127.0.0.1:3000/user/bot/add/",
+            //     type: "POST",
+            //     data: {
+            //         title: "Bot的标题",
+            //         description : "Bot的描述",
+            //         content: "Bot的代码",
+            //     },
+            //     headers: {
+            //         Authorization: "Bearer " + store.state.user.token,
+            //     },
+            //     success(resp) {
+            //         console.log(resp);
+            //     },
+            //     error(resp) {
+            //         console.log(resp);
+            //     }
+            // })
+
+            // $.ajax({
+            //     url: "http://127.0.0.1:3000/user/bot/remove/",
+            //     type: "POST",
+            //     data: {
+            //         bot_id: 4,
+            //     },
+            //     headers: {
+            //         Authorization: "Bearer " + store.state.user.token,
+            //     },
+            //     success(resp) {
+            //         console.log(resp);
+            //     },
+            //     error(resp) {
+            //         console.log(resp);
+            //     }
+            // })
+
+            // $.ajax({
+            //     url: "http://127.0.0.1:3000/user/bot/update/",
+            //     type: "POST",
+            //     data: {
+            //         bot_id: 5,
+            //         title: "Bot的标题7",
+            //         description : "Bot的描述7",
+            //         content: "Bot的代码7",
+            //     },
+            //     headers: {
+            //         Authorization: "Bearer " + store.state.user.token,
+            //     },
+            //     success(resp) {
+            //         console.log(resp);
+            //     },
+            //     error(resp) {
+            //         console.log(resp);
+            //     }
+            // })
+
+            $.ajax({
+                url: "http://localhost:8080/user/getlist/",
+                type: "get",
+                data: {
+                    op: "",
+                    filter: "",
+                },
+                headers: {
+                    Authorization: "Bearer " + store.state.user.token,
+                },
+                success(resp) {
+                    console.log(resp);
+                },
+                error(resp) {
+                    console.log(resp);
+                },
+            });
+        },
+    };
+</script>
+
+<style scoped>
+    .right {
+        width: 1130px;
+        height: 688px;
+        float: right;
+        margin-top: 5%;
+        margin-right: 5%;
+        border-radius: 10px;
+        background-color: rgba(248, 249, 250, 0.8);
+        /* background-color: #f8f9fa; */
+        /* opacity: 0.8; */
+    }
+
+    .find {
+        width: 100%;
+        height: 8%;
+        background-color: white;
+        border-radius: 10px;
+        margin-top: 2%;
+    }
+
+    .list {
+        /* display: flex; */
+        width: 100%;
+        /* height: 80%; */
+        border-radius: 10px;
+        background-color: white;
+        /* margin-top: 10%; */
+        overflow: hidden;
+        margin-top: 3%;
+    }
+
+    .table {
+        margin-left: 1%;
+    }
+
+    .mix {
+        display: flex;
+        height: 100%;
+    }
+
+    .select {
+        width: 10%;
+    }
+
+    .form-select {
+        height: 100%;
+    }
+
+    .put {
+        width: 70%;
+    }
+
+    .send {
+        width: 20%;
+    }
+</style>
+
+
+<!-- Modal -->
+<div class="modal fade" id="add-bot-btn" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">创建Bot</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="add-bot-title" class="form-label">名称</label>
+                    <input v-model="botadd.title" type="text" class="form-control" id="add-bot-title"
+                        placeholder="请输入Bot名称">
+                </div>
+                <div class="mb-3">
+                    <label for="add-bot-description" class="form-label">简介</label>
+                    <textarea v-model="botadd.description" class="form-control" id="add-bot-description" rows="3"
+                        placeholder="请输入Bot简介"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="add-bot-code" class="form-label">代码</label>
+                    <VAceEditor v-model:value="botadd.content" @init="editorInit" lang="c_cpp" theme="textmate"
+                        style="height: 300px" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="error-message">{{ botadd.error_message }}</div>
+                <button type="button" class="btn btn-primary" @click="add_bot">创建</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>

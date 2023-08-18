@@ -21,10 +21,4 @@ export default {};
   /* background-color: #f8f9fa; */
   /* opacity: 0.8; */
 }
-.scrollspy-example {
-  position: relative;
-  height: 100%;
-  margin-top: 0.5rem;
-  overflow: auto;
-}
 </style>

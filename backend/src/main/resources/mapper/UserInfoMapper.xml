@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.backend.mapper.UserInfoMapper">
+    <select id="selectUserInfo" resultType="com.example.backend.pojo.UserInfo">
+        SELECT U.FullName, C.ClassName, U.Username, U.Sex, U.PhoneNumber
+        FROM `User` U
+                 LEFT JOIN UserClasses UC ON U.ID = UC.UserID
+                 LEFT JOIN Classes C ON C.ClassID = UC.ClassID;
+    </select>
+    <select id="selectUserInfoByName" resultType="com.example.backend.pojo.UserInfo">
+        SELECT U.FullName,C.ClassName,U.Username,U.Sex,U.PhoneNumber
+        FROM `User` U
+                 LEFT JOIN UserClasses UC ON U.ID = UC.UserID
+                 LEFT JOIN Classes C ON C.ClassID = UC.ClassID
+        WHERE U.FullName LIKE CONCAT('%', #{str}, '%');
+    </select>
+    <select id="selectUserInfoByClass" resultType="com.example.backend.pojo.UserInfo">
+        SELECT U.FullName,C.ClassName,U.Username,U.Sex,U.PhoneNumber
+        FROM `User` U
+                 LEFT JOIN UserClasses UC ON U.ID = UC.UserID
+                 LEFT JOIN Classes C ON C.ClassID = UC.ClassID
+        WHERE C.ClassName LIKE CONCAT('%', #{str}, '%');
+    </select>
+    <select id="selectUserInfoByUserName" resultType="com.example.backend.pojo.UserInfo">
+        SELECT U.FullName,C.ClassName,U.Username,U.Sex,U.PhoneNumber
+        FROM `User` U
+                 LEFT JOIN UserClasses UC ON U.ID = UC.UserID
+                 LEFT JOIN Classes C ON C.ClassID = UC.ClassID
+        WHERE U.Username LIKE CONCAT('%', #{str}, '%');
+    </select>
+</mapper>
