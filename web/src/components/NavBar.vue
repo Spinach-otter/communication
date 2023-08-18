@@ -117,7 +117,7 @@
         :to="{ name: 'home' }"
         class="d-flex align-items-center pb-3 mb-4 link-dark text-decoration-none border-bottom"
       >
-        <svg class="bi me-2" width="58" height="45">
+        <svg class="bi me-2" width="55" height="42">
           <use xlink:href="#cpu-fill" />
         </svg>
         <span class="fs-2">DHUer</span>
@@ -293,6 +293,7 @@ export default {
   max-height: 100vh;
   overflow-x: auto;
   overflow-y: hidden;
+  opacity: 0.8;
 }
 .b-example-divider {
   flex-shrink: 0;

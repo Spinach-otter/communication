@@ -2,7 +2,9 @@ package com.example.backend.service.impl.user.account;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.backend.mapper.UserMapper;
+import com.example.backend.mapper.UserRolesMapper;
 import com.example.backend.pojo.User;
+import com.example.backend.pojo.userroles;
 import com.example.backend.service.user.account.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,6 +18,8 @@ import java.util.Map;
 public class RegisterServiceImpl implements RegisterService {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private UserRolesMapper userRolesMapper;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -62,10 +66,13 @@ public class RegisterServiceImpl implements RegisterService {
             return map;
         }
 
-        //满足以上的条件 添加新用户
+        //满足以上的条件 添加新用户,同时设置权限为普通用户
         String encodedPassword = passwordEncoder.encode(password);
-        User user = new User(null, username, encodedPassword);
+        User user = new User(null, username, encodedPassword,null,null,null,null);
         userMapper.insert(user);
+        Integer userid=user.getId();
+        userroles userRoles=new userroles(null,userid,1);
+        userRolesMapper.insert(userRoles);
         map.put("error_message","success");
         return map;
     }

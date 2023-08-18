@@ -1,6 +1,7 @@
 package com.example.backend.config.filter;
 
 
+import com.example.backend.mapper.PermissionsMapper;
 import com.example.backend.mapper.UserMapper;
 import com.example.backend.pojo.User;
 import com.example.backend.service.impl.UserDetailsImpl;
@@ -27,6 +28,8 @@ import java.util.List;
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private PermissionsMapper permissionsMapper;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull FilterChain filterChain) throws ServletException, IOException {
@@ -52,7 +55,8 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         if (user == null) {
             throw new RuntimeException("用户名未登录");
         }
-        List<String> list = new ArrayList<>(Arrays.asList("test"));
+        //List<String> list = new ArrayList<>(Arrays.asList("test"));
+        List<String> list = permissionsMapper.selectPermsByUserId(user.getId());
         UserDetailsImpl loginUser = new UserDetailsImpl(user,list);
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginUser, null, loginUser.getAuthorities());

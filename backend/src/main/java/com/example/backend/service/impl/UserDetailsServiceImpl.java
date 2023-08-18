@@ -1,6 +1,7 @@
 package com.example.backend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.example.backend.mapper.PermissionsMapper;
 import com.example.backend.mapper.UserMapper;
 import com.example.backend.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import java.util.Objects;
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private PermissionsMapper permissionsMapper;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         QueryWrapper<User> queryWrapper=new QueryWrapper<>();
@@ -26,7 +29,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if(Objects.isNull(user)) {
            throw new RuntimeException("用户不存在");
         }
-        List<String> list = new ArrayList<>(Arrays.asList("test"));
+        //测试
+        //List<String> list = new ArrayList<>(Arrays.asList("test"));
+        List<String> list = permissionsMapper.selectPermsByUserId(user.getId());
         return new UserDetailsImpl(user,list);
     }
 }

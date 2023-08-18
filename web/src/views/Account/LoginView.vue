@@ -84,6 +84,7 @@ body {
   align-items: center;
   margin-left: 30%;
   margin-top: 150px;
+  margin-bottom: 246px;
   background: linear-gradient(
     to right bottom,
     rgba(255, 255, 255, 0.7),

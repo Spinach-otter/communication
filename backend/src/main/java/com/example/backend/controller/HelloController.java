@@ -10,7 +10,7 @@ import java.util.Map;
 @RequestMapping("/")
 public class HelloController {
     @RequestMapping("hello/")
-    @PreAuthorize("hasAuthority('test')")
+    @PreAuthorize("hasAuthority('deleteUser')")
     public String hello() {
         return "hello";
     }

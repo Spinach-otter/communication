@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.backend.mapper.PermissionsMapper">
+    <select id="selectPermsByUserId" resultType="java.lang.String">
+        SELECT DISTINCT P.`Name`
+        FROM UserRoles UR
+                 LEFT JOIN Roles R ON UR.RoleID=R.RoleID
+                 LEFT JOIN RolePermissions RP ON R.RoleID=RP.RoleID
+                 LEFT JOIN Permissions P ON RP.PermissionID=P.PermissionID
+        WHERE UR.UserID=#{id};
+    </select>
+</mapper>

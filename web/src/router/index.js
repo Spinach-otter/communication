@@ -10,6 +10,7 @@ import Settings from '@/views/User/SettingsView.vue'
 import store from '@/store/index'
 import ClassList from '@/views/Class/ClassListView.vue'
 import MyClass from '@/views/Class/MyClassView.vue'
+import SettingPwd from '@/views/User/SettingPwdView.vue'
 
 const routes = [
   {
@@ -99,6 +100,15 @@ const routes = [
     path: "/settings/",
     name: "settings",
     component: Settings,
+    meta: {
+      requestAuth: true,
+      hideComponent: false,
+    }
+  },
+  {
+    path: "/settings/pwd/",
+    name: "setting_pwd",
+    component: SettingPwd,
     meta: {
       requestAuth: true,
       hideComponent: false,
