@@ -6,4 +6,22 @@
         FROM `User`
         WHERE Username LIKE #{str}
     </select>
+    <select id="getUsersInSameClassByUserID" resultType="com.example.backend.pojo.User">
+        SELECT u.*
+        FROM User u
+                 JOIN UserClasses uc ON u.ID = uc.UserID
+        WHERE uc.ClassID = (SELECT ClassID FROM UserClasses WHERE UserID = #{userId})
+
+    </select>
+    <select id="selectUsersApplyingToClassByUserId" resultType="com.example.backend.pojo.User">
+        SELECT u.*
+        FROM User u
+                 JOIN Applications a ON u.ID = a.UserID
+        WHERE a.ClassID IN (
+            SELECT ClassID
+            FROM UserClasses
+            WHERE UserID = #{userID}
+        )
+
+    </select>
 </mapper>

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.example.backend.mapper.UserRolesMapper">
+    <update id="updateUserRoleToClassAdmin">
+        UPDATE userroles
+        SET RoleID = 2
+        WHERE UserID = #{userId}
+    </update>
     <select id="selectRoleIdByUserId" resultType="java.lang.Integer">
         SELECT UR.RoleID
         FROM `User` U LEFT JOIN UserRoles UR ON U.ID=UR.UserID

@@ -11,6 +11,7 @@ import store from '@/store/index'
 import ClassList from '@/views/Class/ClassListView.vue'
 import MyClass from '@/views/Class/MyClassView.vue'
 import SettingPwd from '@/views/User/SettingPwdView.vue'
+import ClassApply from '@/views/Class/ApplicationView.vue'
 
 const routes = [
   {
@@ -78,6 +79,15 @@ const routes = [
     }
   },
 
+  {
+    path: "/class/apply/",
+    name: "my_class_apply",
+    component: ClassApply,
+    meta: {
+      requestAuth: true,
+      hideComponent: false,
+    }
+  },
   {
     path: "/text/send/",
     name: "text_send",

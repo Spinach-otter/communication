@@ -9,10 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Classes {
+public class userclasses {
     @TableId(type = IdType.AUTO)
+    private Integer relationid;
+    private Integer userid;
     private Integer classid;
-    private String classname;
-    private String classinfo;
-    private Integer creatorid;
 }

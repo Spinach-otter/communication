@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.backend.mapper.UserClassMapper">
+    <insert id="addUserToClassByUsername">
+        INSERT INTO UserClasses (UserID, ClassID)
+        SELECT u.ID, a.ClassID
+        FROM User u
+                 INNER JOIN Applications a ON u.ID = a.UserID
+        WHERE u.Username = #{username}
+    </insert>
+    <delete id="deleteUserFromClassByUsername">
+        DELETE FROM UserClasses
+        WHERE UserID = (SELECT ID FROM User WHERE Username = #{username})
+    </delete>
+    <select id="getUserClassesByUserID" resultType="com.example.backend.pojo.userclasses">
+        SELECT *
+        FROM UserClasses
+        WHERE UserID = #{userId}
+    </select>
+</mapper>

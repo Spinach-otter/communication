@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.backend.mapper.ClassesMapper">
+    <delete id="deleteClassByClassName">
+        DELETE FROM Classes
+        WHERE ClassName = #{className}
+    </delete>
+    <select id="selectClassByClassName" resultType="com.example.backend.pojo.Classes">
+        SELECT *
+        FROM Classes
+        WHERE ClassName LIKE CONCAT('%', #{str}, '%')
+    </select>
+    <select id="getClassIdByClassName" resultType="java.lang.Integer">
+        SELECT ClassID
+        FROM Classes
+        WHERE ClassName = #{className}
+    </select>
+
+    <select id="selectClassByUserID" resultType="com.example.backend.pojo.Classes">
+        SELECT c.*
+        FROM Classes c
+                 INNER JOIN UserClasses uc ON c.ClassID = uc.ClassID
+        WHERE uc.UserID = #{userID}
+    </select>
+</mapper>

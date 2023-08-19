@@ -5,4 +5,5 @@ import com.example.backend.pojo.userroles;
 
 public interface UserRolesMapper extends BaseMapper<userroles> {
     public Integer selectRoleIdByUserId(Integer id);
+    void updateUserRoleToClassAdmin(Integer userId);
 }
