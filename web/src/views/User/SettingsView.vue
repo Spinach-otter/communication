@@ -141,6 +141,7 @@ export default {
               (userupdate.fullname = ""),
               (userupdate.phone = ""),
               (userupdate.sex = "");
+            alert("修改成功");
           } else {
             userupdate.error_message = resp.error_message;
           }

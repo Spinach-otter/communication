@@ -175,7 +175,7 @@ export default {
       classinfo: "",
       error_message: "",
     });
-    const class_add = (classofinfo) => {
+    const class_add = () => {
       classadd.error_message = "";
       $.ajax({
         url: "http://localhost:8080/class/add/",
@@ -189,10 +189,11 @@ export default {
         },
         success(resp) {
           if (resp.error_message === "success") {
-            classadd.classinfo = "";
-            Modal.getInstance("#add-msg-btn-" + classofinfo.classname).hide();
-            alert("发送成功");
+            (classadd.classname = ""), (classadd.classinfo = "");
+            Modal.getInstance("#add-class-btn-").hide();
+            //alert("发送成功");
             //refresh_bots();
+            refresh_class();
           } else {
             classadd.error_message = resp.error_message;
           }

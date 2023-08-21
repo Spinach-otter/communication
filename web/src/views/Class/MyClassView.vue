@@ -18,7 +18,7 @@
             <th scope="col">
               <button
                 @click="apply"
-                v-if="roleid === 3"
+                v-if="roleid !== 1"
                 type="button"
                 class="btn btn-outline-primary"
               >
@@ -299,5 +299,8 @@ export default {
 .classname {
   font-size: 20px;
   margin-left: 45%;
+}
+.classinfo {
+  margin-left: 5%;
 }
 </style>
